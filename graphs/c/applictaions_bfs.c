@@ -78,7 +78,7 @@ int BFS (struct List *list[], int s, int n)
     Phi[i] = -2;
     V[i] = false;
   }
-  struct List *head = (struct List *) malloc (sizeof (struct List));
+  struct List *head = (struct List *) malloc (sizeof (struct List)); //initializing queue
   head->i = s;
   head->next = NULL;
   V[s] = true;
@@ -108,31 +108,30 @@ int BFS (struct List *list[], int s, int n)
      for (i = 0; i < n; ++i)
      printf ("(%d,%d,%d)", Phi[i], i,L[i]);
    */
-  for (i = 0; i < n; ++i)
-    {
+  for (i = 0; i < n; ++i){
       temp = list[i];
       while (temp)
-	{
-	  if (L[i] % 2 != L[temp->i] % 2)
-	    {
-	      //printf ("\n The graph is not a bipartite graph \n");
-	      i = n + 1;
-	      temp = NULL;
-	    }
-	  else
-	    temp = temp->next;
-	}
-    }
+      {
+        if (L[i] % 2 != L[temp->i] % 2){
+            //printf ("\n The graph is not a bipartite graph \n");
+            i = n + 1;
+            temp = NULL;
+        }
+        else{
+            temp = temp->next;
+        }
+      }
+  }
   // if(i==n)
   //printf ("\n The graph is a bipartite graph \n");
 
   int max = L[0];
-  for (i = 1; i < n; ++i)
-    if (L[i] > max)
-      max = L[i];
-
+  for (i = 1; i < n; ++i){
+    if (L[i] > max){
+       max = L[i];
+    }
+  }
   return max;
-
 }
 
 int Diameter (struct List *list[], int n)
@@ -141,15 +140,15 @@ int Diameter (struct List *list[], int n)
   for (i = 0; i < n; ++i)
     {
       max = BFS (list, i, n);
-      if (max > d)
-	d = max;
+      if (max > d){
+        d = max;
+      }
     }
   return d;
-
 }
 
 
-void main ()
+int main ()
 {
   int A[100000], C[100000], n = 6000, m, i, j, k;
   float H[100000];
@@ -159,33 +158,31 @@ void main ()
   struct List *list[n], *temp, *listu[n];
 
   for (i = 0; i < n; ++i)
-    {
-      list[i] = NULL;
-      listu[i];
-    }
+  {
+    list[i] = NULL;
+    listu[i];
+  }
 
   m = 0;
-  for (i = 0; i < n; ++i)
-    {
+  for (i = 0; i < n; ++i){
       j = rand () % n;
       while (j < n)
-	{
-	  if (i == j)
-	    j++;
-	  listu[i] = newedge (listu[i], j);
-	  list[i] = newedge (list[i], j);
-	  list[j] = newedge (list[j], i);
+      {
+        if (i == j)
+          j++;
+        listu[i] = newedge (listu[i], j);
+        list[i] = newedge (list[i], j);
+        list[j] = newedge (list[j], i);
 
-	  ++m;
-	  // printf ("(%d %d)", i, j);
-	  j += rand () % n + 1;
-	}
-
+        ++m;
+        // printf ("(%d %d)", i, j);
+        j += rand () % n + 1;
+      }
       //if(i%5==0) i++;
-    }
+  }
   printf ("\nThe number of edges in the graph is %d\n", m);
 //  BFS (list, 4, n);
 //connected(list, n);
-
   printf ("\nThe Diameter of the graph is %d\n", Diameter (list, n));
+  return 0;
 }
