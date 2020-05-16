@@ -70,7 +70,7 @@ void BFS (struct List *list[], int s, int n)
     }
 }
 
-void iDFS (struct List *list[], int s, int n)
+void iDFS (struct List *list[], int s, int n) //iterative dfs traveral with discovery and finish time and takes adjacency list as a parameter
 {
     bool V[n];
     int Phi[n], i, d[n], f[n], c = 1;
@@ -111,14 +111,14 @@ void iDFS (struct List *list[], int s, int n)
         }
         else{
             if (!f[head->i]){
-            f[head->i] = c++;
+                f[head->i] = c++;
             }
             head = head->next;
         }
     }
     printf (" \n DFS Tree from %d is\n", s);
     for (i = 0; i < n; ++i){
-    printf ("(%d,%d,%d,%d)", Phi[i], i, d[i], f[i]);
+        printf ("(%d,%d,%d,%d)", Phi[i], i, d[i], f[i]);
     }
 }
 
