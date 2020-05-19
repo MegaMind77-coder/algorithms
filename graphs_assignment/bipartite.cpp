@@ -57,3 +57,29 @@ bool isBipartite(vector<vector<int>>& graph) {
     }
     return false;
 }
+
+int main(){
+    int vertices;
+    cout << "please enter the number of vertices:";
+    cin >> vertices;
+    vector<vector<int>>graph(vertices);
+    int node;
+    int num_edge;
+    for(int i=0;i<vertices;i++){
+        cout << "please enter the number of edges connected to vertex" + to_string(i) + ": ";
+        cin >> num_edge;
+        graph[i].resize(num_edge);
+        cout << "enter connected vertices: ";
+        for(int j=0;j<num_edge;j++){
+            cin >> graph[i][j];
+        }
+    }
+
+    if(isBipartite(graph)){
+        cout << "true" << endl;
+    }
+    else{
+        cout << "false" << endl;
+    }
+    return 0;
+}

@@ -40,4 +40,19 @@ int numIslands(vector<vector<char>>& grid) {
     return count_components(grid, visited, rows, cols);
 }
 
+//please enter a matrix of size 4*5
+//as given in leetcode testcases
 
+int main(){
+    int edge_breadth = 4;
+    int edge_length = 5;
+    //assuming matrix edge is of size 4 as said in the question
+    vector <vector<char>> grid(edge_breadth);
+    for(int i=0; i<edge_breadth; i++){
+        grid[i].resize(edge_length);
+        for(int j=0; j<edge_length; j++){
+            cin >> grid[i][j];
+        }
+    }
+    cout << numIslands(grid) << endl;
+}

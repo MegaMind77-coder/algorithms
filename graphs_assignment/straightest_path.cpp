@@ -5,7 +5,7 @@ using namespace std;
 char graph_matrix[MAX][MAX];
 int row_op[4] = {-1, 1, 0, 0};
 int col_op[4] = {0, 0, 1, -1};
-char operation[4] = {'u', 'd', 'l', 'r'};
+char operation[4] = {'u', 'd', 'r', 'l'};
 priority_queue<heap_node, vector<heap_node>, greater<heap_node> > min_heap;
 int distances[MAX][MAX];
 

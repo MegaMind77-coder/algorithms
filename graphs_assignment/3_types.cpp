@@ -4,8 +4,6 @@ typedef long long int ll;
 using namespace std;
 
 int parent[MAX];
-
-
 int root(int node){
     
     while(parent[node] != node){
