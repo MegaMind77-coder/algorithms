@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <limits.h>
 
-struct List
+struct List     //used to create stack 
 {
     int i;
     struct List *next;
@@ -17,7 +17,7 @@ struct List *newedge (struct List *node, int i)
     return temp;
 }
 
-struct Listw
+struct Listw     //stack to store weight as well 
 {
     int i;
     float w;
@@ -33,21 +33,21 @@ struct Listw *newedgew (struct Listw *node, int i, float w)
     temp->next = node;
     return temp;
 }
-
-void BFS (struct List *list[], int s, int n)
+ 
+void BFS (struct List *list[], int s, int n)    //normal bfs  using queue
 {
     bool V[n];
     int Phi[n], i;
 
-    for (i = 0; i < n; ++i){
-            Phi[i] = -2;
-            V[i] = false;
+    for (i = 0; i < n; ++i){     //initailizing parent pointer 
+        Phi[i] = -2;
+        V[i] = false;
     }
     struct List *head = (struct List *) malloc (sizeof (struct List));
     head->i = s;
     head->next = NULL;
-    V[s] = true;
-    Phi[s] = -1;
+    V[s] = true;   //visited and unvisited bool array
+    Phi[s] = -1;   // parent pointer
     struct List *tail = head, *temp;
     while (head){
             temp = list[head->i];
@@ -122,7 +122,7 @@ void iDFS (struct List *list[], int s, int n) //iterative dfs traveral with disc
     }
 }
 
-void DFSvist (struct List *list[], int u, bool V[], int Phi[], int d[], int f[], int n, int *c)
+void DFSvist (struct List *list[], int u, bool V[], int Phi[], int d[], int f[], int n, int *c)   //dfs recursive with finish and discovery time
 {
     *c = *c + 1;
     V[u] = true;
@@ -139,12 +139,12 @@ void DFSvist (struct List *list[], int u, bool V[], int Phi[], int d[], int f[],
     f[u] = *c;
 }
 
-void DFS (struct List *list[], int s, int n)
+void DFS (struct List *list[], int s, int n)   //loop to assign values to arrays
 {
     bool V[n];
     int Phi[n], i, d[n], f[n], c;
     c = 0;
-    for (i = 0; i < n; ++i){
+    for (i = 0; i < n; ++i){    
         Phi[i] = -2;
         V[i] = false;
     }
@@ -156,8 +156,8 @@ void DFS (struct List *list[], int s, int n)
     }
 }
 
-void DFSvisttopo (struct List *list[], int u, bool V[], struct List **topo, int n)
-{
+void DFSvisttopo (struct List *list[], int u, bool V[], struct List **topo, int n)    //topological sort
+{  
     V[u] = true;
     struct List *temp = list[u], t1;
     while (temp)
@@ -170,7 +170,7 @@ void DFSvisttopo (struct List *list[], int u, bool V[], struct List **topo, int 
     *topo = newedge (*topo, u);
 }
 
-struct List *Topo (struct List *list[], int n)
+struct List *Topo (struct List *list[], int n)  //to cover all connected components
 {
     bool V[n];
     struct List *topo = NULL;
@@ -188,7 +188,7 @@ struct List *Topo (struct List *list[], int n)
     return topo;
 }
 
-void DAGpath (struct Listw *listw[], struct List *list[], int s, int n)
+void DAGpath (struct Listw *listw[], struct List *list[], int s, int n)    //directed acyclic graph path
 {
     bool V[n];
     struct List *topo = NULL, *t1;
