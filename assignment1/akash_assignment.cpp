@@ -1,18 +1,18 @@
-//this could also be done using segment trees however i use fenwick sine the code for fenwick is much shorter 
-// we would construct a 2d segment teee there as well
 
 #include<bits/stdc++.h>
 #define MAX 100007
 
 using namespace std;
+//this could also be done using segment trees however i use fenwick sine the code for fenwick is much shorter 
+// we would construct a 2d segment teee there as well
 
 int fenwick_tree[MAX][32]; //fenwich tree 2d in nature, each column corresponds to the an alphabet in the order 'a', 'b' .......
 
 int num_of_char(int i, int j){ //j is the column number, this thus calculates the number of corresponding character between any tow indexes
     int sum = 0;
     while(i>0){ //normal fenwick tree traversal
-        sum += fenwick_tree[i][j];
-        i = i - (i&-i);
+        sum =sum+ fenwick_tree[i][j];
+        i  -= (i&-i);
     }
     return sum;
 }   //this function would return the number of characters between any two indices
