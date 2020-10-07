@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 #define MAX 100000
-typedef long long ll;
+#define ll long long;
 
 using namespace std;
 
